@@ -30,6 +30,11 @@ public class TaskService {
         return taskMapper.toDto(foundedTask);
     }
 
+    public List<ResponseTaskDto> findByOwnerId(UUID ownerId) {
+        var foundedTasks = taskRepository.findByOwnerId(ownerId);
+        return foundedTasks.stream().map(taskMapper::toDto).toList();
+    }
+
 
     public ResponseTaskDto create(RequestTaskDto request) {
         var entityTask = taskMapper.toEntity(request);

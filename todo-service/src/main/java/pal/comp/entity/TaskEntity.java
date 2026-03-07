@@ -42,6 +42,6 @@ public class TaskEntity {
     private Boolean isDone;
 
     @Column(name = "comments")
-    @OneToMany(mappedBy = "taskId")
+    @OneToMany(mappedBy = "taskId", cascade = CascadeType.ALL)
     private List<CommentEntity> comments;
 }

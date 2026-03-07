@@ -19,7 +19,6 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
-
     runtimeOnly("org.postgresql:postgresql")
 }
 

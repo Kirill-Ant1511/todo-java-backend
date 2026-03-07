@@ -1,8 +1,10 @@
 package pal.comp.mappers;
 
 import org.springframework.stereotype.Component;
+import pal.comp.dto.RequestCommentDto;
 import pal.comp.dto.ResponseCommentDto;
 import pal.comp.entity.CommentEntity;
+import pal.comp.entity.TaskEntity;
 
 @Component
 public class CommentMapper {
@@ -15,7 +17,12 @@ public class CommentMapper {
         );
     }
 
-    public CommentEntity toEntity(ResponseCommentDto dto) {
-        return null;
+    public CommentEntity toEntity(RequestCommentDto dto) {
+        return new CommentEntity(
+                null,
+                dto.ownerId(),
+                dto.content(),
+                new TaskEntity(dto.taskId(), null, null, null, null, null, null, null)
+        );
     }
 }

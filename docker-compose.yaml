@@ -10,20 +10,19 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-
-  app:
-    build: .
-    depends_on:
-      - task_postgres
+      - task-postgres-data:/var/lib/postgresql/data
+  user_postgres:
+    image: postgres:16.2-alpine
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://task_postgres:5433/task_db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: root_task_db_password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root_user_db_password
+      POSTGRES_DB: user_db
     ports:
-      - "8080:8080"
+      - "5434:5432"
+    volumes:
+      - user-postgres-data:/var/lib/postgresql/data
 
 
 volumes:
-  postgres-data:
+  task-postgres-data:
+  user-postgres-data:

@@ -29,6 +29,11 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findById(id));
     }
 
+    @GetMapping("/users/{ownerId}")
+    public ResponseEntity<List<ResponseTaskDto>> findByOwnerId(@PathVariable UUID ownerId) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.findByOwnerId(ownerId));
+    }
+
     @PostMapping
     public ResponseEntity<ResponseTaskDto> save(@RequestBody RequestTaskDto request) {
         return ResponseEntity.status(HttpStatus.OK).body(taskService.create(request));
