@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pal.comp.dto.RequestTaskDto;
 import pal.comp.dto.ResponseTaskDto;
+import pal.comp.exchange.AuthClient;
 import pal.comp.service.TaskService;
 
 import java.util.List;
@@ -14,13 +15,22 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/task")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
+    private final AuthClient authClient;
 
+    public TaskController(TaskService taskService, AuthClient authClient) {
+        this.taskService = taskService;
+        this.authClient = authClient;
+    }
 
     @GetMapping
     public ResponseEntity<List<ResponseTaskDto>> findAll() {
+        var userResponse = authClient.authUser();
+        if(userResponse.getStatusCode() == HttpStatus.OK && userResponse.getBody() != null) {
+            System.out.println(userResponse.getBody().id());
+        }
         return ResponseEntity.status(HttpStatus.OK).body(taskService.findAll());
     }
 

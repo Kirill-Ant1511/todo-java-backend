@@ -12,10 +12,15 @@ import pal.comp.repository.CommentRepository;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository repository;
     private final CommentMapper mapper;
+
+    public CommentService(CommentRepository repository, CommentMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     public ResponseCommentDto create(RequestCommentDto request) {
         var commentEntity = mapper.toEntity(request);

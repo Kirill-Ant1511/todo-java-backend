@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":common-lib"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     // lombok
@@ -20,6 +21,7 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
+
 }
 
 tasks.test {

@@ -7,7 +7,6 @@ import pal.comp.dto.RequestCommentDto;
 import pal.comp.dto.ResponseCommentDto;
 import pal.comp.service.CommentService;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController

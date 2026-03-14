@@ -22,7 +22,6 @@ services:
     volumes:
       - user-postgres-data:/var/lib/postgresql/data
 
-
 volumes:
   task-postgres-data:
   user-postgres-data:
